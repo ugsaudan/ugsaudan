@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <style>
+        
+    </style>
 </head>
 <body>
     <div id="body-container">
@@ -104,7 +107,7 @@
                 <input type="number" name="n-input" id="n-input" class="factorial-input">
                 <button onclick="FSA()" class="factorial-input">Compute</button> 
                 
-                <h1>Factioral of your number: <span id="factorial"></span></h1>
+                <h1>Nth Factioral of your number: <span id="factorial"></span></h1>
                 <h1>Sum of your number: <span id="sum"></span></h1>
                 <h1>Average of your number: <span id="average"></span></h1>
             </div>
@@ -135,6 +138,7 @@
                     <div class="btn-container">
                         <button onclick="addEmployee()">Add Employee</button>
                         <button class="primary" onclick="window.dialog.showModal();">Remove Employee</button>
+                        <button onclick="window.dialog2.showModal();">Clear All Rows</button>
                     </div>
                     
 
@@ -143,6 +147,11 @@
                         <input id="remove-employee" type="number">
                         <button onclick="deleteRow(), window.dialog.close();">Remove Employee</button>
                         <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+                    </dialog>
+                    <dialog id="dialog2">
+                        <h2>ARE YOU SURE?</h2>
+                        <button onclick="deleteTable(), window.dialog2.close();" class="btn-confirm">Yes</button>
+                        <button onclick="window.dialog2.close();" aria-label="close" class="x">❌</button>
                     </dialog>
                 </div>
                 <table id="table-body" class="table-body">
@@ -308,6 +317,7 @@
         let temp = [employees[arrLength].number, employees[arrLength].name, employees[arrLength].daysWorked, employees[arrLength].dailyRate, employees[arrLength].grossPay, employees[arrLength].deductionAmount, employees[arrLength].netPay]
         const element = document.getElementById("table-body");
         const tr = document.createElement("tr");
+        tr.setAttribute('class', 'tr');
         for(let k = 0; k < temp.length; k++){
             const td = document.createElement("td");
             const text = document.createTextNode(temp[k])
@@ -322,7 +332,6 @@
     function deleteRow(){
         // DEOSNT WORK FIX IR
         let num = document.getElementById("remove-employee").value;
-        //document.getElementById("table-body").deleteRow(num) 
         console.log(employees)
         let i = 0;
         while(i < employees.length){
@@ -341,9 +350,16 @@
         
     }
 
-    
+    function deleteTable(){
+        const rows = document.querySelectorAll(".tr")
+        console.log(rows)
+        rows.forEach(row => {
+            row.remove();
+            
+        });
 
-
+        employees = []
+    }
 
 
 </script>
