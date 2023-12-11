@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="body-container">
+        <div class="functions-container">
+            <div class="functions">
+                <div class="card-container">
+                    <button class="card" onclick="toggle('a')">
+                        <h4>Simple Computations</h4>
+                    </button>
+                </div>
+            <div class="card-container">
+                <button class="card" onclick="toggle('b')">
+                    <h4>Income Tax Calculator</h4>
+                </button>
+            </div>
+            <div class="card-container">
+                <button class="card" onclick="toggle('c')">
+                    <h4>Factorial, Sum, Average</h4>
+
+                </button>
+            </div>  
+            <div class="card-container">
+                <button class="card" onclick="toggle('d')">
+                    <h4>Simple Payroll</h4>
+                </button>
+            </div>
+                
+            </div>
+            <div id="bottom-slab">
+                <span></span>
+            </div>
+        </div>
+        <div class="display-function" id='a' class="computations">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="fahrenheit" class="form__label"><b>Fahrenheit</b></label>   
+                    <input type="number" class="form__input" id="fahr-input" placeholder="Enter Number" />             
+                </div>
+                <button onclick="computations.fahrenheitToCelsius()" class="comp-btn">&rarr;</button>
+                <div class="result-container">
+                    <span class="result-label"><b>Celsius</b></span>
+                    <span id="fahrenheitResult" class="result">Input Fahrenheit</span> 
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="celsius" class="form__label"><b>Celsius</b></label>
+                    <input name="celsius" class="form__input" type="number" id="cel-input" placeholder="Enter Number">
+                </div>
+                <button onclick="computations.celsiusToFahrenheit()" class="comp-btn">&rarr;</button>
+                <div class="result-container">
+                    <span class="form__label"><b>Fahrenheit</b></span>
+                    <span id="celsiusResult" class="result">Input Celsius</span> 
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="meters" class="form__label"><b>Meters</b></label>
+                    <input name="meters" class="form__input" type="number" id="meters-input" placeholder="Enter Number">
+                </div>
+                <button onclick="computations.metersToFeet()" class="comp-btn">&rarr;</button>
+                <div class="result-container">
+                    <span class="form__label"><b>Feet</b></span>
+                    <span id="metersResult" class="result">Input Meters</span> 
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="feet" class="form__label"><b>Feet</b></label>
+                    <input name="feet" class="form__input" type="number" id="feet-input" placeholder="Enter Number">
+                </div>
+                <button onclick="computations.feetToMeters()" class="comp-btn">&rarr;</button>
+                <div class="result-container">
+                    <span class="form__label"><b>Meters</b></span>
+                    <span id="feetResult" class="result">Input Feet</span> 
+                </div>
+            </div>
+        </div>
+        <div class="display-function" id='b'>
+            <div>
+                <div class="income-group">
+                    <label for="income" class="income-label">Enter your income here: </label>
+                    <input name="income" type="number" id="income-input">
+                </div>
+                <button onclick="incomeTaxCalc()" class="tax-btn">Compute <b>&rarr;</b></button>
+                <div class="tax-result-container" >
+                    <span class="tax-label">Income Tax: </span>
+                    <span id="tax-res" class="tax-result">Input income</span>
+                </div>
+                
+            </div> 
+        </div>
+            
+        <div class="display-function" id='c'>
+            <div>
+                <label for="n-input" class="factorial-input">Input Number Here</label>
+                <input type="number" name="n-input" id="n-input" class="factorial-input">
+                <button onclick="FSA()" class="factorial-input">Compute</button> 
+                
+                <h1>Nth Factioral of your number: <span id="factorial"></span></h1>
+                <h1>Sum of your number: <span id="sum"></span></h1>
+                <h1>Average of your number: <span id="average"></span></h1>
+            </div>
+
+        </div>
+        <div class="display-function" id='d'>
+            <div>
+                <div class="input-container">
+                    <div class="input-body">
+                       <div>
+                            <label for="employee-name">Employee Name: </label>
+                            <input name="employee-name" type="text" id="employee-name">
+                        </div>
+                        <div>
+                            <label for="days-worked">Days Worked: </label>
+                            <input name="days-worked" type="number" id="days-worked">
+                        </div>
+                        <div>
+                            <label for="daily-rate">Daily Rate: </label>
+                            <input name="daily-rate" type="number" id="daily-rate">
+                        </div>
+                        <div>
+                            <label for="deduction-amount">Deduction Amount: </label>
+                            <input name="deduction-amount" type="number" id="deduction-amount">
+                        </div> 
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button onclick="addEmployee()">Add Employee</button>
+                        <button class="primary" onclick="window.dialog.showModal();">Remove Employee</button>
+                    </div>
+                    
+
+                    <dialog id="dialog">
+                        <h2>Enter the number of the employee you want to remove</h2>
+                        <input id="remove-employee" type="number">
+                        <button onclick="deleteRow(), window.dialog.close();">Remove Employee</button>
+                        <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+                    </dialog>
+                </div>
+                <table id="table-body" class="table-body">
+                    <tr>
+                        <th>No.</th>
+                        <th>Employee Name</th>
+                        <th>Days Worked</th>
+                        <th>Daily Rate</th>
+                        <th>Gross Pay</th>
+                        <th>Deduction Amount</th>
+                        <th>Net Pay </th>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </div
+</body>
+<script>
+
+    //  TOGGLE HIDE AND SHOW DIV
+
+    //  Initialize the default display
+    currentDisplay = document.getElementById("a");
+    currentDisplay.style.display = "block";
+    
+    //  Toggle between displays
+    function toggle(divNum){
+        currentDisplay.style.display = "none"
+        currentDisplay = document.getElementById(divNum);
+        currentDisplay.style.display = "block"
+    }
+
+
+    //  SIMPLE COMPUTATIONS
+    const computations = {
+    celsiusToFahrenheit:() => {
+        let cel = document.getElementById("cel-input").value;
+        if(!cel){
+            let res = document.getElementById("celsiusResult").innerHTML = "Need Celsius Input";
+        } else{
+            let fahr = (9/5) * cel + 32;
+            let res = document.getElementById("celsiusResult").innerHTML = fahr.toFixed(0);  
+        }
+    },
+    fahrenheitToCelsius:() => {
+        let fahr = document.getElementById("fahr-input").value;
+        if(!fahr){
+            let res = document.getElementById("fahrenheitResult").innerHTML = "Need Fahrenheit Input";
+        } else{
+            let cel = (5/9) * (fahr - 32)
+            let res = document.getElementById("fahrenheitResult").innerHTML = cel.toFixed(0);  
+        }
+    },
+    metersToFeet:() => {
+        let meters = document.getElementById("meters-input").value;
+        if(!meters){
+            let res = document.getElementById("metersResult").innerHTML = "Need Meters Input";
+        } else{
+            let feet = meters * 3.28084;
+            let res = document.getElementById("metersResult").innerHTML = feet.toFixed(0);  
+        }   
+    },
+    feetToMeters:() => {
+        let feet = document.getElementById("feet-input").value;
+        if(!feet){
+            let res = document.getElementById("feetResult").innerHTML = "Need Feet Input";
+        } else{
+            let meters = feet / 3.28084;
+            let res = document.getElementById("feetResult").innerHTML = meters.toFixed(0);  
+        }  
+
+    }
+}
+    
+    // INCOME TAX CALCULATOR
+    function incomeTaxCalc() {
+        let netIncome = document.getElementById("income-input").value;
+        let tax;
+        if (!netIncome){
+            document.getElementById("tax-res").innerHTML = "NO VALUE INPUT!"
+        } else{
+            if(netIncome <= 250000){
+                document.getElementById("tax-res").innerHTML = 0
+            } else if(netIncome <= 400000){
+                tax = 0.2 * (netIncome - 250000);
+                document.getElementById("tax-res").innerHTML = tax;
+            } else if(netIncome <= 800000){
+                tax = 30000 + 0.25 * (netIncome - 400000);
+                document.getElementById("tax-res").innerHTML = tax;
+            } else if(netIncome <= 2000000){
+                tax = 130000 + 0.3 * (netIncome - 800000);
+                document.getElementById("tax-res").innerHTML = tax
+            } else if(netIncome <= 8000000){
+                tax = 490000 + 0.32 * (netIncome - 2000000);
+                document.getElementById("tax-res").innerHTML = tax
+            } else{
+                tax = 2410000 + 0.35 * (netIncome - 8000000);
+                document.getElementById("tax-res").innerHTML = tax
+            }
+        }
+    }
+
+    // nth Factorial, Sum, Average
+
+    function FSA() {
+        let n = document.getElementById("n-input").value;
+        let counter = n;
+
+        let nth = 1;
+        while(counter > 0 ){
+            nth *= counter;
+            counter--
+        }
+        document.getElementById("factorial").innerHTML = nth.toFixed(0);
+
+        counter = n;
+        let sum = 0;
+        let j = 1;
+        do{
+            sum += j;
+            j++
+        } while(j <= counter)
+        document.getElementById("sum").innerHTML = sum.toFixed(0);
+
+        counter = n;
+        let total = 0;
+        for (let k = 1; k <= counter; k++){
+            total += k;
+        }
+        document.getElementById("average").innerHTML = (total / counter).toFixed(0);
+
+    }
+    
+
+    // SIMPLE PAYROLL
+    let employees = [];
+    
+
+    function addEmployee(){
+        let employee = {
+            name: " ",
+            daysWorked: 0,
+            dailyRate: 0,
+            deductionAmount: 0,
+            grossPay: 0,
+            netPay: 0,
+            number: 0
+        }
+        
+
+        employee.name = document.getElementById("employee-name").value;
+        employee.daysWorked = document.getElementById("days-worked").value;
+        employee.dailyRate = document.getElementById("daily-rate").value;;
+        employee.deductionAmount = document.getElementById("deduction-amount").value;
+        employee.grossPay = employee.daysWorked * employee.dailyRate;
+        employee.netPay = employee.grossPay - employee.deductionAmount;
+        employee.number = employees.length+ 1;
+        employees.push(employee);
+
+
+        let arrLength = employees.length - 1;
+        let temp = [employees[arrLength].number, employees[arrLength].name, employees[arrLength].daysWorked, employees[arrLength].dailyRate, employees[arrLength].grossPay, employees[arrLength].deductionAmount, employees[arrLength].netPay]
+        const element = document.getElementById("table-body");
+        const tr = document.createElement("tr");
+        for(let k = 0; k < temp.length; k++){
+            const td = document.createElement("td");
+            const text = document.createTextNode(temp[k])
+            td.appendChild(text);
+            tr.appendChild(td);
+        }
+        element.appendChild(tr);
+            
+        }
+
+    
+    function deleteRow(){
+        // DEOSNT WORK FIX IR
+        let num = document.getElementById("remove-employee").value;
+        //document.getElementById("table-body").deleteRow(num) 
+        console.log(employees)
+        let i = 0;
+        while(i < employees.length){
+            if(employees[i].number == num){
+                console.log(employees)
+                document.getElementById("table-body").deleteRow(employees.indexOf(employees[i]) + 1)               
+                let deleted = employees.splice(i,i+1) 
+                console.log(employees)
+                console.log(i)
+                console.log(employees.indexOf(employees[i]) + 1)
+                console.log(deleted)
+                console.log(employees)
+            } 
+            i++;
+        }
+        
+    }
+
+    
+
+
+
+
+</script>
+</html>
